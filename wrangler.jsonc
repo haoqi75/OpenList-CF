@@ -23,7 +23,7 @@
 // 用户填入的值会成为该 Worker 的 Secret，后续更新不会被覆盖。
 // =============================================================================
 {
-  "name": "openlist-tsworkers",
+  "name": "openlist-cf-worker",
   "main": "src/backend/worker.ts",
   "compatibility_date": "2026-08-04",
   "compatibility_flags": ["nodejs_compat"],
@@ -215,7 +215,12 @@
   //   二次部署通过 inherit 复用已有绑定，不会重复创建。
   //   若想改用账户里已有的 KV，把该命名空间的 id 填进来即可。
   //
-  //  "kv_namespaces": [{ "binding": "KV" }],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "97bbf89e040d4283abbea1f23a7c58a0"
+    }
+  ],
   //
   // ▶ 方案 B：D1（关系型，可与 Go 后端共享库；DB_FORMAT 建议改为 "sql"）
   //   控制台：Workers & Pages → D1 → 创建数据库 → 绑定到 Worker，变量名填 DB
